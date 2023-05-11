@@ -1,21 +1,21 @@
 variable "resource_group_name" {
   description = "A container that holds related resources for an Azure solution"
-  default     = ""
+  default     = "rg-shared-westeurope-01"
 }
 
 variable "location" {
   description = "The location/region to keep all your network resources. To get the list of all locations with table format from azure cli, run 'az account list-locations -o table'"
-  default     = ""
+  default     = "westeurope"
 }
 
 variable "virtual_network_name" {
   description = "The name of the virtual network"
-  default     = ""
+  default     = "vnet-shared-hub-westeurope-001"
 }
 
 variable "subnet_name" {
   description = "The name of the subnet to use in VM scale set"
-  default     = ""
+  default     = "snet-management"
 }
 
 variable "random_password_length" {
@@ -25,7 +25,7 @@ variable "random_password_length" {
 
 variable "enable_public_ip_address" {
   description = "Reference to a Public IP Address to associate with the NIC"
-  default     = null
+  default     = true
 }
 
 variable "public_ip_allocation_method" {
@@ -85,7 +85,7 @@ variable "private_ip_address" {
 
 variable "enable_vm_availability_set" {
   description = "Manages an Availability Set for Virtual Machines."
-  default     = false
+  default     = true
 }
 
 variable "platform_fault_domain_count" {
@@ -99,7 +99,7 @@ variable "platform_update_domain_count" {
 
 variable "enable_proximity_placement_group" {
   description = "Manages a proximity placement group for virtual machines, virtual machine scale sets and availability sets."
-  default     = false
+  default     = true
 }
 
 variable "existing_network_security_group_id" {
@@ -114,7 +114,7 @@ variable "nsg_inbound_rules" {
 
 variable "virtual_machine_name" {
   description = "The name of the virtual machine."
-  default     = ""
+  default     = "vm-linux"
 }
 
 variable "instances_count" {
@@ -124,12 +124,12 @@ variable "instances_count" {
 
 variable "os_flavor" {
   description = "Specify the flavor of the operating system image to deploy Virtual Machine. Valid values are `windows` and `linux`"
-  default     = "windows"
+  default     = "linux"
 }
 
 variable "virtual_machine_size" {
   description = "The Virtual Machine SKU for the Virtual Machine, Default is Standard_A2_V2"
-  default     = "Standard_A2_v2"
+  default     = "Basic_A0"
 }
 
 variable "disable_password_authentication" {
@@ -194,7 +194,7 @@ variable "vm_time_zone" {
 
 variable "generate_admin_ssh_key" {
   description = "Generates a secure private key and encodes it as PEM."
-  default     = false
+  default     = true
 }
 
 variable "admin_ssh_key_data" {
@@ -485,7 +485,7 @@ variable "linux_distribution_list" {
 }
 
 variable "linux_distribution_name" {
-  default     = "ubuntu1804"
+  default     = "ubuntu2004"
   description = "Variable to pick an OS flavour for Linux based VM. Possible values include: centos8, ubuntu1804"
 }
 
