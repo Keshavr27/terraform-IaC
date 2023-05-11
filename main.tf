@@ -1,12 +1,12 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=3.55.0"
-    }
-  }
+# terraform {
+#   required_providers {
+#     azurerm = {
+#       source  = "hashicorp/azurerm"
+#       version = "=3.55.0"
+#     }
+#   }
 
-}
+# }
 
 provider "azurerm" {
   skip_provider_registration = "true"
@@ -88,7 +88,7 @@ resource "azurerm_public_ip" "pip" {
   sku                 = var.public_ip_sku
   sku_tier            = var.public_ip_sku_tier
   domain_name_label   = var.domain_name_label
-  availability_zone   = var.public_ip_availability_zone
+#   availability_zone   = var.public_ip_availability_zone
   tags                = merge({ "ResourceName" = lower("pip-vm-${var.virtual_machine_name}-${data.azurerm_resource_group.rg.location}-0${count.index + 1}") }, var.tags, )
 
   lifecycle {
