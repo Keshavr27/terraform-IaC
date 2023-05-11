@@ -184,3 +184,4 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
         timeout = "4m"
         agent = false
     }
+}
