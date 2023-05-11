@@ -163,10 +163,10 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     admin_username = "azureuser"
     disable_password_authentication = true
 
-    admin_ssh_key {
-        username       = "azureuser"
-        public_key     = file("~/.ssh/id_rsa.pub")
-    }
+#     admin_ssh_key {
+#         username       = "azureuser"
+#         public_key     = file("~/.ssh/id_rsa.pub")
+#     }
 
     boot_diagnostics {
         storage_account_uri = azurerm_storage_account.mystorageaccount.primary_blob_endpoint
@@ -184,9 +184,9 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
         timeout = "4m"
         agent = false
     }
-	provisioner "file" {
-        source = "example_file.txt"
-        destination = "/tmp/example_file.txt"
-    }
+# 	provisioner "file" {
+#         source = "example_file.txt"
+#         destination = "/tmp/example_file.txt"
+#     }
 
 }
