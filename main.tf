@@ -184,4 +184,9 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
         timeout = "4m"
         agent = false
     }
+	provisioner "file" {
+        source = "example_file.txt"
+        destination = "/tmp/example_file.txt"
+    }
+
 }
