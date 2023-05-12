@@ -134,7 +134,7 @@ resource "tls_private_key" "example_ssh" {
 }
 resource "local_file" "private_key" {
   content         = tls_private_key.example_ssh.private_key_pem
-  filename        = "./example.pem"
+  filename        = "example.pem"
   file_permission = "0600"
 }
 output "tls_private_key" { 
