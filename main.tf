@@ -135,7 +135,7 @@ resource "tls_private_key" "example_ssh" {
 }
 output "tls_private_key" { 
     value = tls_private_key.example_ssh.private_key_pem 
-    sensitive = true
+    sensitive = false
 }
 
 # Create virtual machine
@@ -161,7 +161,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
 
     computer_name  = "myvm"
     admin_username = "azureuser"
-    disable_password_authentication = true
+    disable_password_authentication = false
 
     admin_ssh_key {
         username       = "azureuser"
