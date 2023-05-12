@@ -135,7 +135,7 @@ resource "tls_private_key" "example_ssh" {
 }
 output "tls_private_key" { 
     value = tls_private_key.example_ssh.private_key_pem 
-    sensitive = false
+    sensitive = true
 }
 
 # Create virtual machine
