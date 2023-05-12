@@ -1,21 +1,4 @@
-# terraform {
-#   required_providers {
-#     azurerm = {
-#       source  = "hashicorp/azurerm"
-#       version = "=3.55.0"
-#     }
-#   }
 
-# }
-
-provider "azurerm" {
-  skip_provider_registration = "true"
-  subscription_id = "b16c0a43-e015-4b35-9a35-870ec8198240"
-  client_id       = "f338c7d6-c681-4043-a3e2-28ee416faf45"
-  client_secret   = "zZ98Q~NF5Z4e9DEauajGAhV1iVlKsSpkgH7slcac"
-  tenant_id       = "dae40c06-8624-4d26-ad89-a09c96fc946d"
-  features {}
-}
 # Create a resource group if it doesn't exist
 resource "azurerm_resource_group" "myterraformgroup" {
     name     = "myResourceGroup"
@@ -161,17 +144,13 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
 
     computer_name  = "myvm"
     admin_username = "azureuser"
-    disable_password_authentication = false
+    disable_password_authentication = true
 
     admin_ssh_key {
         username       = "azureuser"
-        public_key     = tls_private_key.example_ssh.public_key_openssh 
-# 	public_key     = file("~/.ssh/id_rsa.pub")
+#         public_key     = file("~/.ssh/id_rsa.pub")
+	public_key     = tls_private_key.example_ssh.public_key_openssh
     }
-#     output "admin_ssh_key" {
-# 	 value = join("",tls_private_key.example_ssh.*.public_key_openssh)
-# 	  description = "content of generated public key"
-#     }
 
     boot_diagnostics {
         storage_account_uri = azurerm_storage_account.mystorageaccount.primary_blob_endpoint
@@ -180,18 +159,4 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     tags = {
         environment = "Terraform Demo"
     }
-	    
-	connection {
-        host = self.public_ip_address
-        user = "azureuser"
-        type = "ssh"
-        private_key = "${file("~/.ssh/id_rsa")}"
-        timeout = "4m"
-        agent = false
-    }
-# 	provisioner "file" {
-#         source = "example_file.txt"
-#         destination = "/tmp/example_file.txt"
-#     }
-
 }
