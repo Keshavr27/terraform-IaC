@@ -166,12 +166,12 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
     admin_ssh_key {
         username       = "azureuser"
         public_key     = tls_private_key.example_ssh.public_key_openssh 
-	#file("~/.ssh/id_rsa.pub")
+# 	public_key     = file("~/.ssh/id_rsa.pub")
     }
-    output "admin_ssh_key" {
-	 value = join("",tls_private_key.example_ssh.*.public_key_openssh)
-	  description = "content of generated public key"
-    }
+#     output "admin_ssh_key" {
+# 	 value = join("",tls_private_key.example_ssh.*.public_key_openssh)
+# 	  description = "content of generated public key"
+#     }
 
     boot_diagnostics {
         storage_account_uri = azurerm_storage_account.mystorageaccount.primary_blob_endpoint
